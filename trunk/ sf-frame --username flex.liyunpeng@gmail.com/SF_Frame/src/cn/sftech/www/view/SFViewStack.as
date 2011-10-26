@@ -41,6 +41,41 @@ package cn.sftech.www.view
 			removeChild(item);
 		}
 		
+		override public function addChildAt(child:DisplayObject, index:int):DisplayObject
+		{
+			return super.addChildAt(child,index);
+		}
+		
+		override public function removeChildAt(index:int):DisplayObject
+		{
+			if(numChildren -1 > _selectedIndex) {
+			} else if(_selectedIndex != 0) {
+				_selectedIndex --;
+			}
+			
+			if(_oldSelectedIndex > _selectedIndex) {
+				_oldSelectedIndex --;
+			}
+			
+			changeViewItem();
+			return super.removeChildAt(index);
+		}
+		
+		public function getItemAt(value : uint) : DisplayObject
+		{
+			return getChildAt(value);
+		}
+		
+		public function getItemIndex(child : DisplayObject) : int
+		{
+			return getChildIndex(child);
+		}
+		
+		public function getItemCount() : uint
+		{
+			return numChildren;
+		}
+		
 		private function changeViewItem() : void
 		{
 			getChildAt(_oldSelectedIndex).visible = false;
