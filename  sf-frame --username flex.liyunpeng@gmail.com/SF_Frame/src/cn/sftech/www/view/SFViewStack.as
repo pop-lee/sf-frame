@@ -1,5 +1,8 @@
 package cn.sftech.www.view
 {
+	import cn.sftech.www.effect.SFViewStackListEffect;
+	import cn.sftech.www.effect.base.SFViewStackEffect;
+	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
@@ -9,6 +12,8 @@ package cn.sftech.www.view
 		private var _selectedIndex : int = 0;
 		
 		private var _oldSelectedIndex : int = 0;
+		
+		private var _effect : SFViewStackEffect;
 		
 		public function SFViewStack()
 		{
@@ -26,6 +31,17 @@ package cn.sftech.www.view
 		public function get selectedIndex() : int
 		{
 			return _selectedIndex;
+		}
+		
+		public function get oldSelectIndex() : int
+		{
+			return _oldSelectedIndex;
+		}
+		
+		public function set effect(effect : SFViewStackEffect) : void
+		{
+			_effect = effect
+			_effect.target = this;
 		}
 		
 		public function addItem(item : SFContainer) : void
@@ -78,8 +94,17 @@ package cn.sftech.www.view
 		
 		private function changeViewItem() : void
 		{
+			var oldChild : SFSprite = (getChildAt(_oldSelectedIndex) as SFSprite);
+			oldChild.hideEffect = _effect.hideEffect;
+//			oldChild.hide();
 			getChildAt(_oldSelectedIndex).visible = false;
+			
+			
+			var newChild : SFSprite = (getChildAt(_selectedIndex) as SFSprite);
+			newChild.showEffect = _effect.showEffect;
+//			newChild.show();
 			getChildAt(_selectedIndex).visible = true;
+			
 		}
 		
 	}
