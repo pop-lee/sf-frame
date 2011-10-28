@@ -2,6 +2,7 @@ package cn.sftech.www.view
 {
 	
 	import cn.sftech.www.core.BdcBackgroundType;
+	import cn.sftech.www.effect.base.SFEffect;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -27,8 +28,14 @@ package cn.sftech.www.view
 	 */	
 	public class SFSprite extends MovieClip
 	{
+		/**
+		 * X坐标缩放比例
+		 */
 		private var _scaleX : Number = 1;
 		
+		/**
+		 * Y坐标缩放比例
+		 */		
 		private var _scaleY : Number = 1;
 		
 		private var _parentWidth : Number = 0;
@@ -56,6 +63,9 @@ package cn.sftech.www.view
 		
 		private var _backgroundMovieClip : MovieClip = new MovieClip();
 		
+		private var _showEffect : SFEffect;
+		private var _hideEffect : SFEffect;
+		
 		public function SFSprite()
 		{
 			super();
@@ -68,6 +78,11 @@ package cn.sftech.www.view
 //			_backgroundImageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE,loadBackgroundImage);
 		}
 		
+		/**
+		 * 设置父组件宽度
+		 * @param value 父组件的宽度
+		 * 
+		 */		
 		public function set parentWidth(value : Number) : void
 		{
 			_parentWidth = value;
@@ -77,6 +92,12 @@ package cn.sftech.www.view
 			}
 			updateDisplayList(_width,_height);
 		}
+		
+		/**
+		 * 设置父组件的高度
+		 * @param value 父组件的高度
+		 * 
+		 */		
 		public function set parentHeight(value : Number) : void
 		{
 			_parentHeight = value;
@@ -87,12 +108,23 @@ package cn.sftech.www.view
 			updateDisplayList(_width,_height);
 		}
 		
+		/**
+		 * 设置宽度值
+		 * @param value 要设置的宽度(单位 像素)
+		 * 
+		 */		
 		override public function set width(value : Number) : void
 		{
 			_width = value;
 			_isPercentWidth = false;
 			updateDisplayList(_width,_height);
 		}
+		
+		/**
+		 * 设置高度值
+		 * @param value 要设置的高度(单位 像素)
+		 * 
+		 */		
 		override public function set height(value : Number) : void
 		{
 			_height = value;
@@ -100,29 +132,67 @@ package cn.sftech.www.view
 			updateDisplayList(_width,_height);
 		}
 		
+		/**
+		 * 添加子组建
+		 * @param child 要添加的子组件
+		 * @return 添加了得子组件
+		 * 
+		 */		
 		override public function addChild(child:DisplayObject):DisplayObject
 		{
 			return super.addChild(child);
 		}
+		
+		/**
+		 * 在指定的索引添加子组件
+		 * @param child 要添加的子组建
+		 * @param index 要添加的索引位置
+		 * @return 已添加的子组件
+		 * 
+		 */		
 		override public function addChildAt(child:DisplayObject, index:int):DisplayObject
 		{
 			return super.addChildAt(child,index+1);
 		}
 		
+		/**
+		 * 删除子组件
+		 * @param child 要删除的子组件
+		 * @return 已经删除的子组件
+		 * 
+		 */		
 		override public function removeChild(child:DisplayObject):DisplayObject
 		{
 			return super.removeChild(child);
 		}
 		
+		/**
+		 * 删除指定索引位置的子组件
+		 * @param index 要删除的子组件索引
+		 * @return 已删除的子组件
+		 * 
+		 */		
 		override public function removeChildAt(index:int):DisplayObject
 		{
 			return super.removeChildAt(index+1);
 		}
+		
+		/**
+		 * 获取指定索引的子组件
+		 * @param index 要获取子组件的索引
+		 * @return 制定索引的子组件
+		 * 
+		 */		
 		override public function getChildAt(index:int):DisplayObject
 		{
 			return super.getChildAt(index+1);
 		}
 		
+		/**
+		 * 设置百分比宽度
+		 * @param value 要设置宽度的百分比值
+		 * 
+		 */		
 		public function set percentWidth(value : Number) : void
 		{
 			_percentWidth = value;
@@ -130,6 +200,12 @@ package cn.sftech.www.view
 			_isPercentWidth = true;
 			updateDisplayList(_width,_height);
 		}
+		
+		/**
+		 * 设置百分比高度
+		 * @param value 要设置高度的百分比值
+		 * 
+		 */
 		public function set percentHeight(value : Number) : void
 		{
 			_percentHeight =value;
@@ -138,6 +214,11 @@ package cn.sftech.www.view
 			updateDisplayList(_width,_height);
 		}
 		
+		/**
+		 * 设置背景颜色
+		 * @param value 设置背景颜色
+		 * 
+		 */
 		public function set backgroundColor(value : uint) : void
 		{
 			_backgroundColor = value;
@@ -145,12 +226,22 @@ package cn.sftech.www.view
 			updateDisplayList(_width,_height);
 		}
 		
+		/**
+		 * 设置背景透明度
+		 * @param value 背景的透明度值
+		 * 
+		 */
 		public function set backgroundAlpha(value : Number) : void
 		{
 			_backgroundAlpha = value;
 			updateDisplayList(_width,_height);
 		}
 		
+		/**
+		 * 设置背景图片
+		 * @param value 暂定为背景图片的Bitmap类
+		 * 
+		 */
 		public function set backgroundImage(value : *) : void
 		{
 //			if(value is String) {
@@ -181,6 +272,24 @@ package cn.sftech.www.view
 			return _height;
 		}
 		
+		
+		override public function set visible(value:Boolean):void
+		{
+			if(value) {
+				if(_showEffect == null) {
+					super.visible = value;
+				} else {
+					show();
+				}
+			} else {
+				if(_hideEffect == null) {
+					super.visible = value;
+				} else {
+					hide();
+				}
+			}
+		}
+		
 		public function set top(value : Number) : void
 		{
 			this.y = value;
@@ -196,6 +305,37 @@ package cn.sftech.www.view
 		public function set right(value : Number) : void
 		{
 			this.x = this.parent.width - value;
+		}
+		
+		public function set showEffect(value : SFEffect) : void
+		{
+			_showEffect = value;
+			_showEffect.target = this;
+		}
+		
+		public function set hideEffect(value : SFEffect) : void
+		{
+			_hideEffect = value
+			_hideEffect.target = this;
+		}
+		
+		public function get showEffect() : SFEffect
+		{
+			return _showEffect;
+		}
+		
+		public function get hideEffect() : SFEffect
+		{
+			return _hideEffect;
+		}
+		
+		public function show() : void
+		{
+			_showEffect.play();
+		}
+		public function hide() : void
+		{
+			_hideEffect.play();
 		}
 		
 		/**
