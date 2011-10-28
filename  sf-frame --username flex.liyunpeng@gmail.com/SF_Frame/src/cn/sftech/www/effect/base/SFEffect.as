@@ -8,7 +8,6 @@ package cn.sftech.www.effect.base
 		private var _target : Object;
 		private var _duration : Number = 1;
 		private var _vars : TweenLiteVars;
-		private var _isTo : Boolean = true;
 		
 		public function SFEffect()
 		{
@@ -22,6 +21,11 @@ package cn.sftech.www.effect.base
 		public function set target(target : Object) : void
 		{
 			_target = target;
+		}
+		
+		public function get target() : Object
+		{
+			return _target;
 		}
 		
 		/**
@@ -44,23 +48,9 @@ package cn.sftech.www.effect.base
 			_vars = vars;
 		}
 		
-		/**
-		 * 设置效果模式为To 或者是 From
-		 * @param value 代表效果模式True为To，False为From
-		 * 
-		 */		
-		public function set isTo(value : Boolean) : void
-		{
-			_isTo = value;
-		}
-		
 		public function play() : void
 		{
-			if(_isTo) {
-				TweenLite.to(_target,_duration,_vars);
-			} else {
-				TweenLite.from(_target,_duration,_vars);
-			}
+			TweenLite.to(_target,_duration,_vars);
 		}
 		
 		public function stop() : void

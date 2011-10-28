@@ -3,6 +3,8 @@ package cn.sftech.www.view
 	
 	import cn.sftech.www.core.BdcBackgroundType;
 	import cn.sftech.www.effect.base.SFEffect;
+	import cn.sftech.www.event.SFHideEvent;
+	import cn.sftech.www.event.SFShowEvent;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -62,9 +64,6 @@ package cn.sftech.www.view
 		private var _backgroundAlpha : Number = 1;
 		
 		private var _backgroundMovieClip : MovieClip = new MovieClip();
-		
-		private var _showEffect : SFEffect;
-		private var _hideEffect : SFEffect;
 		
 		public function SFSprite()
 		{
@@ -276,18 +275,11 @@ package cn.sftech.www.view
 		override public function set visible(value:Boolean):void
 		{
 			if(value) {
-				if(_showEffect == null) {
-					super.visible = value;
-				} else {
-					show();
-				}
+				this.dispatchEvent(new SFShowEvent(SFShowEvent.SHOW_EVENT));
 			} else {
-				if(_hideEffect == null) {
-					super.visible = value;
-				} else {
-					hide();
-				}
+				this.dispatchEvent(new SFHideEvent(SFHideEvent.HIDE_EVENT));
 			}
+			super.visible = value;
 		}
 		
 		public function set top(value : Number) : void
@@ -305,37 +297,6 @@ package cn.sftech.www.view
 		public function set right(value : Number) : void
 		{
 			this.x = this.parent.width - value;
-		}
-		
-		public function set showEffect(value : SFEffect) : void
-		{
-			_showEffect = value;
-			_showEffect.target = this;
-		}
-		
-		public function set hideEffect(value : SFEffect) : void
-		{
-			_hideEffect = value
-			_hideEffect.target = this;
-		}
-		
-		public function get showEffect() : SFEffect
-		{
-			return _showEffect;
-		}
-		
-		public function get hideEffect() : SFEffect
-		{
-			return _hideEffect;
-		}
-		
-		public function show() : void
-		{
-			_showEffect.play();
-		}
-		public function hide() : void
-		{
-			_hideEffect.play();
 		}
 		
 		/**

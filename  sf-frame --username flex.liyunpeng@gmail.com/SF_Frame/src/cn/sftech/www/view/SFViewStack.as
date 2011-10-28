@@ -1,6 +1,6 @@
 package cn.sftech.www.view
 {
-	import cn.sftech.www.effect.SFViewStackListEffect;
+	import cn.sftech.www.effect.viewStackEffect.SFViewStackListEffect;
 	import cn.sftech.www.effect.base.SFViewStackEffect;
 	
 	import flash.display.DisplayObject;
@@ -94,17 +94,8 @@ package cn.sftech.www.view
 		
 		private function changeViewItem() : void
 		{
-			var oldChild : SFSprite = (getChildAt(_oldSelectedIndex) as SFSprite);
-			oldChild.hideEffect = _effect.hideEffect;
-//			oldChild.hide();
 			getChildAt(_oldSelectedIndex).visible = false;
-			
-			
-			var newChild : SFSprite = (getChildAt(_selectedIndex) as SFSprite);
-			newChild.showEffect = _effect.showEffect;
-//			newChild.show();
 			getChildAt(_selectedIndex).visible = true;
-			
 		}
 		
 	}

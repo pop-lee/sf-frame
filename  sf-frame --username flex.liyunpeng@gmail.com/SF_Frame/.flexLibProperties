@@ -4,6 +4,8 @@
     <classEntry path="cn.sftech.www.util.LogManager"/>
     <classEntry path="cn.sftech.www.view.SFMovieClip"/>
     <classEntry path="cn.sftech.www.effect.base.SFEffect"/>
+    <classEntry path="cn.sftech.www.event.SFShowEvent"/>
+    <classEntry path="cn.sftech.www.event.SFHideEvent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
