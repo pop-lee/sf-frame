@@ -6,7 +6,7 @@ package cn.sftech.www.effect.base
 
 	public class SFViewStackEffect
 	{
-		protected var _viewStack : SFViewStack;
+		private var _viewStack : SFViewStack;
 		
 		protected var _duration : Number = 1;
 		
@@ -19,6 +19,11 @@ package cn.sftech.www.effect.base
 		public function set target(viewStack : SFViewStack) : void
 		{
 			_viewStack = viewStack;
+		}
+		
+		public function get target() : SFViewStack
+		{
+			return _viewStack;
 		}
 		
 		public function set duration(duration : Number) : void
