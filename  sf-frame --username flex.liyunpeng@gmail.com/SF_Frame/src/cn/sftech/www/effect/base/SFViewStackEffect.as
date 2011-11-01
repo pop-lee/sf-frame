@@ -47,6 +47,11 @@ package cn.sftech.www.effect.base
 			_duration = duration;
 		}
 		
+		public function get duration() : Number
+		{
+			return _duration;
+		}
+		
 		public function get showEffect() : SFEffectBase
 		{
 			throw new Error("this function must be override");
