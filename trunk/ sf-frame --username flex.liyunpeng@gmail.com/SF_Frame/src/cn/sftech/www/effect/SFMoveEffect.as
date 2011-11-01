@@ -1,11 +1,11 @@
 package cn.sftech.www.effect
 {
-	import cn.sftech.www.effect.base.SFEffect;
+	import cn.sftech.www.effect.base.SFEffectBase;
 	
 	import com.greensock.TweenLite;
 	import com.greensock.data.TweenLiteVars;
 	
-	public class SFMoveEffect extends SFEffect
+	public class SFMoveEffect extends SFEffectBase
 	{
 		private var _xTo : Number;
 		
@@ -18,6 +18,7 @@ package cn.sftech.www.effect
 		public function SFMoveEffect()
 		{
 			super();
+			vars = new TweenLiteVars();
 		}
 		
 		public function set xTo(value : Number) : void
@@ -42,16 +43,14 @@ package cn.sftech.www.effect
 		
 		override public function play():void
 		{
-			var _vars : TweenLiteVars = new TweenLiteVars();
 			if(!isNaN(_xFrom))
 				target.x = _xFrom;
 			if(!isNaN(_yFrom))
 				target.y = _yFrom;
 			if(!isNaN(_xTo))
-				_vars.prop("x",_xTo);
+				vars.prop("x",_xTo);
 			if(!isNaN(_yTo))
-				_vars.prop("y",_yTo);
-			vars = _vars;
+				vars.prop("y",_yTo);
 			super.play();
 		}
 		
