@@ -166,7 +166,7 @@ package cn.sftech.www.effect.viewStackEffect
 		private function hideOnComplete() : void
 		{
 			toListNext();
-//			target.getChildAt(_baseIndex-_direction).visible = false;
+			target.getChildAt(_baseIndex-_direction).visible = false;
 			
 //			_effectSwitch = false;
 //			target.getChildAt(target.oldSelectIndex).visible = false;
