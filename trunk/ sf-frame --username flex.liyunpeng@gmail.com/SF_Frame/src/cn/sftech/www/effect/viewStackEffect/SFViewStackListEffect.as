@@ -63,9 +63,11 @@ package cn.sftech.www.effect.viewStackEffect
 		
 		override protected function playEffect() : void
 		{
+			_baseIndex = target.oldSelectIndex;
+			_showEffect.duration = this.duration/Math.abs(target.selectedIndex - target.oldSelectIndex);
+			_hideEffect.duration = this.duration/Math.abs(target.selectedIndex - target.oldSelectIndex);
 			if(target.selectedIndex > target.oldSelectIndex) {
 				_direction = 1;
-				_baseIndex = Math.min(target.selectedIndex,target.oldSelectIndex);
 				_showEffect.xFrom = target.width;
 				_showEffect.xTo = 0;
 				_hideEffect.xFrom = 0;
@@ -73,7 +75,6 @@ package cn.sftech.www.effect.viewStackEffect
 				_hideEffect.onComplete = hideOnComplete;
 			} else if(target.selectedIndex < target.oldSelectIndex) {
 				_direction = -1;
-				_baseIndex = Math.max(target.selectedIndex,target.oldSelectIndex);
 				_showEffect.xFrom = -target.width;
 				_showEffect.xTo = 0;
 				_hideEffect.xFrom = 0;
@@ -97,7 +98,7 @@ package cn.sftech.www.effect.viewStackEffect
 		
 		private function toListNext() : void
 		{
-			if(_baseIndex == Math.max(target.selectedIndex,target.oldSelectIndex)) return;
+			if(_baseIndex == target.selectedIndex) return;
 			show(target.getItemAt(_baseIndex+_direction));
 			hide(target.getItemAt(_baseIndex));
 			_baseIndex += _direction;
