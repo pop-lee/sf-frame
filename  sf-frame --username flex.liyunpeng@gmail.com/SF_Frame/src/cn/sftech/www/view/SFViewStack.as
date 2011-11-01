@@ -1,7 +1,8 @@
 package cn.sftech.www.view
 {
-	import cn.sftech.www.effect.viewStackEffect.SFViewStackListEffect;
 	import cn.sftech.www.effect.base.SFViewStackEffect;
+	import cn.sftech.www.effect.viewStackEffect.SFViewStackListEffect;
+	import cn.sftech.www.event.SFPropertyChangeEvent;
 	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -26,8 +27,10 @@ package cn.sftech.www.view
 			_selectedIndex = value;
 			
 			changeViewItem();
+			this.dispatchEvent(new SFPropertyChangeEvent());
 		}
 		
+		[Bindable(event="propertyChangeEvent")]
 		public function get selectedIndex() : int
 		{
 			return _selectedIndex;

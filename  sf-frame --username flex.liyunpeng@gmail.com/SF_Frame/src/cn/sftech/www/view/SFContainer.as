@@ -1,5 +1,7 @@
 package cn.sftech.www.view
 {
+	import cn.sftech.www.event.SFPropertyChangeEvent;
+	
 	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -61,6 +63,7 @@ package cn.sftech.www.view
 			return _children;
 		}
 		
+		[Bindable(event="propertyChangeEvent")]
 		override public function get numChildren() : int
 		{
 			return _children.length;
@@ -78,7 +81,9 @@ z			return addChildAt(child,_children.length);
 				(child as SFSprite).parentHeight = height;
 			}
 			_children.splice(index,0,child);
-			return _contentPane.addChildAt(child,index);
+			var _return : DisplayObject = _contentPane.addChildAt(child,index);
+			this.dispatchEvent(new SFPropertyChangeEvent());
+			return _return;
 		}
 		
 		override public function getChildIndex(child:DisplayObject):int
@@ -94,7 +99,9 @@ z			return addChildAt(child,_children.length);
 		override public function removeChildAt(index:int): DisplayObject
 		{
 			_children.splice(index,1);
-			return _contentPane.removeChildAt(index);
+			var _return : DisplayObject = _contentPane.removeChildAt(index);
+			this.dispatchEvent(new SFPropertyChangeEvent());
+			return _return;
 		}
 		
 		override public function getChildAt(index:int):DisplayObject

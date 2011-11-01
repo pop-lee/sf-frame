@@ -4,6 +4,7 @@ package cn.sftech.www.view
 	import cn.sftech.www.core.BdcBackgroundType;
 	import cn.sftech.www.effect.base.SFEffect;
 	import cn.sftech.www.event.SFHideEvent;
+	import cn.sftech.www.event.SFPropertyChangeEvent;
 	import cn.sftech.www.event.SFShowEvent;
 	
 	import flash.display.Bitmap;
@@ -271,14 +272,8 @@ package cn.sftech.www.view
 			return _height;
 		}
 		
-		
 		override public function set visible(value:Boolean):void
 		{
-			if(value) {
-				this.dispatchEvent(new SFShowEvent(SFShowEvent.SHOW_EVENT));
-			} else {
-				this.dispatchEvent(new SFHideEvent(SFHideEvent.HIDE_EVENT));
-			}
 			super.visible = value;
 		}
 		
