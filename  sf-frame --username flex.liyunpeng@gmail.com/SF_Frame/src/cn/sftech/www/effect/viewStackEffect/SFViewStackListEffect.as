@@ -72,14 +72,14 @@ package cn.sftech.www.effect.viewStackEffect
 				_showEffect.xTo = 0;
 				_hideEffect.xFrom = 0;
 				_hideEffect.xTo = -target.width;
-				_hideEffect.onComplete = hideOnComplete;
+				_hideEffect.vars.onComplete(hideOnComplete,[target.getItemAt(_baseIndex)]);
 			} else if(target.selectedIndex < target.oldSelectIndex) {
 				_direction = -1;
 				_showEffect.xFrom = -target.width;
 				_showEffect.xTo = 0;
 				_hideEffect.xFrom = 0;
 				_hideEffect.xTo = target.width;
-				_hideEffect.onComplete = hideOnComplete;
+				_hideEffect.vars.onComplete(hideOnComplete,[target.getItemAt(_baseIndex)]);
 			}
 			toListNext();
 			
@@ -163,10 +163,10 @@ package cn.sftech.www.effect.viewStackEffect
 			
 		}
 		
-		private function hideOnComplete() : void
+		private function hideOnComplete(object : DisplayObject) : void
 		{
 			toListNext();
-			target.getChildAt(_baseIndex-_direction).visible = false;
+			object.visible = false;
 			
 //			_effectSwitch = false;
 //			target.getChildAt(target.oldSelectIndex).visible = false;
