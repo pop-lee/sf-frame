@@ -63,10 +63,5 @@ package cn.sftech.www.effect.base
 			
 		}
 		
-		public function set onComplete(func : Function) : void
-		{
-			_vars.onComplete(func);
-		}
-		
 	}
 }
