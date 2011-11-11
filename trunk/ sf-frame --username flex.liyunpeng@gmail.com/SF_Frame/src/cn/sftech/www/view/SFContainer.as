@@ -76,6 +76,7 @@ z			return addChildAt(child,_children.length);
 		
 		override public function addChildAt(child:DisplayObject, index:int):DisplayObject
 		{
+			if(index == -1) throw new Error("This index is out of the bound");
 			if(child is SFSprite) {
 				(child as SFSprite).parentWidth = width;
 				(child as SFSprite).parentHeight = height;
@@ -98,6 +99,7 @@ z			return addChildAt(child,_children.length);
 		
 		override public function removeChildAt(index:int): DisplayObject
 		{
+			if(index == -1) throw new Error("This index is out of the bound");
 			_children.splice(index,1);
 			var _return : DisplayObject = _contentPane.removeChildAt(index);
 			this.dispatchEvent(new SFPropertyChangeEvent());
