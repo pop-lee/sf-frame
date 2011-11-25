@@ -47,7 +47,7 @@ package cn.sftech.www.view
 			_effect.target = this;
 		}
 		
-		public function addItem(item : SFContainer) : void
+		public function addItem(item : DisplayObject) : void
 		{
 			item.visible = false;
 			addChild(item);
@@ -55,7 +55,7 @@ package cn.sftech.www.view
 			changeViewItem();
 		}
 		
-		public function removeItem(item : SFContainer) : void
+		public function removeItem(item : DisplayObject) : void
 		{
 			removeChild(item);
 		}
