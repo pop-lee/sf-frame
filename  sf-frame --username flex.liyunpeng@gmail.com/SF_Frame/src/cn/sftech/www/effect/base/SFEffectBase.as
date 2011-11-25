@@ -60,7 +60,7 @@ package cn.sftech.www.effect.base
 		
 		public function stop() : void
 		{
-			
+			TweenLite.killTweensOf(_target);
 		}
 		
 	}
