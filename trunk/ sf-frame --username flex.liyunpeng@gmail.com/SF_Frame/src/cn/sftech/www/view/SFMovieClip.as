@@ -23,7 +23,7 @@ package cn.sftech.www.view
 			}
 			_backgroundClass = value;
 			_background = new _backgroundClass();
-			_background.stop();
+//			_background.stop();
 			addChildAt(_background,0);
 			
 		}
