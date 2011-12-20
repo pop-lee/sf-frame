@@ -71,7 +71,7 @@ package cn.sftech.www.view
 		
 		override public function addChild(child:DisplayObject):DisplayObject
 		{
-z			return addChildAt(child,_children.length);
+			return addChildAt(child,_children.length);
 		}
 		
 		override public function addChildAt(child:DisplayObject, index:int):DisplayObject
