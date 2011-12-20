@@ -63,5 +63,10 @@ package cn.sftech.www.effect.base
 			TweenLite.killTweensOf(_target);
 		}
 		
+		public function fromPlay() : void
+		{
+			TweenLite.from(_target,_duration,_vars); 
+		}
+		
 	}
 }
