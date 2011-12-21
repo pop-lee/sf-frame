@@ -25,6 +25,7 @@ package cn.sftech.www.effect.viewStackEffect
 		 */		
 		override protected function playEffect() : void
 		{
+			target.getChildAt(target.oldSelectIndex).visible = true;
 			_hideEffect.target = target.getChildAt(target.oldSelectIndex);
 			_hideEffect.duration = duration;
 			_hideEffect.alphaFrom = 1;

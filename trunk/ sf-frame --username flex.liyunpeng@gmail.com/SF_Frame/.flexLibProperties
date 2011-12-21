@@ -4,6 +4,8 @@
     <classEntry path="cn.sftech.www.event.SFPropertyChangeEvent"/>
     <classEntry path="cn.sftech.www.effect.SFZoomEffect"/>
     <classEntry path="cn.sftech.www.util.FPSViewer"/>
+    <classEntry path="cn.sftech.www.effect.viewStackEffect.SFViewStackGradientEffect"/>
+    <classEntry path="cn.sftech.www.effect.SFGradientEffect"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
