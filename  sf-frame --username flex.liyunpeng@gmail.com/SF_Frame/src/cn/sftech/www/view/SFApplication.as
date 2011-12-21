@@ -15,7 +15,7 @@ package cn.sftech.www.view
 		public function SFApplication()
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE,addToStageHandle);
-//			super();
+			super();
 		}
 		
 		protected function init() : void
@@ -29,6 +29,8 @@ package cn.sftech.www.view
 		
 		private function addToStageHandle(event : Event) : void
 		{
+			this.removeEventListener(Event.ADDED_TO_STAGE,addToStageHandle);
+			
 			_application = stage;
 //			this.backgroundAlpha = 0;
 			if(_rotation) {
