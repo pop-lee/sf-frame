@@ -41,6 +41,16 @@ package cn.sftech.www.effect
 			_yFrom = value;
 		}
 		
+		public function get yTo() : Number
+		{
+			return _yTo;
+		}
+		
+		public function get yFrom() : Number
+		{
+			return _yFrom;
+		}
+		
 		override public function play():void
 		{
 			if(!isNaN(_xFrom))
