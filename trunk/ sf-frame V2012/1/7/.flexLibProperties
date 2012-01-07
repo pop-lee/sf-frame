@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="cn.sftech.www.event.SFPropertyChangeEvent"/>
+    <classEntry path="cn.sftech.www.effect.SFZoomEffect"/>
+    <classEntry path="cn.sftech.www.util.FPSViewer"/>
+    <classEntry path="cn.sftech.www.effect.viewStackEffect.SFViewStackGradientEffect"/>
+    <classEntry path="cn.sftech.www.effect.SFGradientEffect"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
