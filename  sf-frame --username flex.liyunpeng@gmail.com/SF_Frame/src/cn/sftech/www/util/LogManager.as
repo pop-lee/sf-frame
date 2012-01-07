@@ -21,6 +21,9 @@ package cn.sftech.www.util
 			_logField.size = 24;
 			_logField.backgroundAlpha = 1;
 			_logField.text = "";
+			_logField.mouseChildren = false;
+			_logField.mouseEnabled = false;
+			_logField.selectable = false;
 //			_logField.visible = false;
 			_logField.text = value + "\n";
 //			hideLog();
