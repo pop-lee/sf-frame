@@ -10,7 +10,7 @@ package cn.sftech.www.util
 	{
 		public static var fps : Number = 0;
 		
-		private var timerFlag : uint;
+		private var timerFlag : int;
 		
 		public function FPSViewer()
 		{
