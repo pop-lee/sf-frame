@@ -29,6 +29,7 @@
           </libraryPathEntry>
         </excludedEntries>
       </libraryPathEntry>
+      <libraryPathEntry kind="1" linkType="1" path="src/access"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

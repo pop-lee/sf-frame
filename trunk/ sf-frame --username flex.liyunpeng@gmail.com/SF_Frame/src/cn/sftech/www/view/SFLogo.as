@@ -8,6 +8,10 @@ package cn.sftech.www.view
 		public function SFLogo()
 		{
 			super();
+			
+			if(SFApplication.application.stageWidth > SFApplication.application.height) {
+				this.gotoAndStop(2);
+			}
 		}
 	}
 }
